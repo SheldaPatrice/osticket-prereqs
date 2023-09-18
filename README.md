@@ -19,16 +19,45 @@ This tutorial will outline the prerequisites and installation of the open-source
 
 <h2>List of Prerequisites</h2>
 
-- Create an Azure Virtual Machine Windows 10, 4 vCPUs
-- Install / Enable IIS in Windows with CGI and Common HTTP Features and IIS Management Console through the Control Panel. TO check if this was installed properlly go to your web browser and serach 127.0.0.1 you should see windows Internet Information Servies 
-- Download and install PHP Manager for IIS (PHPManagerForIIS_V1.5.0.msi)
-- Download and install the Rewrite Module (rewrite_amd64_en-US.msi)
-- Create the directory C:\PHP
-- Download PHP 7.3.8 (php-7.3.8-nts-Win32-VC15-x86.zip) and unzip the contents into C:\PHP
-- Download and install VC_redist.x86.exe
-- Download and install MySQL 5.5.62 (mysql-5.5.62-win32.msi)
+Before proceeding with the installation of osTicket, ensure the following prerequisites have been met:
 
+1. Azure Virtual Machine Setup:
+- Create an Azure Virtual Machine with the following specifications:
+     - Windows 10
+     - 4 vCPUs
 
+2. IIS and Features Configuration:
+- Inside the Azure Virtual Machine:
+     - Open the Control Panel.
+     - Navigate to "Programs" > "Programs and Features" > "Turn Windows features on or off."
+     - Enable the following features:
+          - Internet Information Services (IIS)
+          - CGI
+          - Common HTTP Features
+          - IIS Management Console
+
+3. Verification:
+- Open a web browser within the Azure Virtual Machine.
+- Enter "http://127.0.0.1" to confirm that Internet Information Services (IIS) is installed and operational. You should see the default IIS page.
+
+4. PHP and Rewrite Module Installation:
+- Inside the Azure Virtual Machine:
+     - Install "PHP Manager for IIS" and the "URL Rewrite Module" using the provided installers.
+
+5. Directory and PHP Configuration:
+- Inside the Azure Virtual Machine:
+     - Create a directory at "C:\PHP."
+     - Download PHP 7.3.8 for Windows, and extract its contents into "C:\PHP."
+
+6. VC_redist.x86.exe Installation:
+- Inside the Azure Virtual Machine:
+     - Install "VC_redist.x86.exe" to ensure PHP compatibility.
+
+7. MySQL Installation:
+- Inside the Azure Virtual Machine:
+     - Install MySQL 5.5.62 for Windows using the provided installer.
+
+Once all these prerequisites are completed, you can proceed with the installation of osTicket, knowing that the required environment is properly configured and ready for use.
 
 <h2>Installation Steps</h2>
 
