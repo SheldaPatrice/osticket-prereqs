@@ -4,7 +4,7 @@
 </p>
 
 <h1>osTicket - Prerequisites and Installation</h1>
-This tutorial outlines the prerequisites and installation of the open-source help desk ticketing system osTicket.<br />
+This tutorial will outline the prerequisites and installation of the open-source help desk ticketing system osTicket.<br />
 
 
 <h2>Environments and Technologies Used</h2>
@@ -20,7 +20,7 @@ This tutorial outlines the prerequisites and installation of the open-source hel
 <h2>List of Prerequisites</h2>
 
 - Create an Azure Virtual Machine Windows 10, 4 vCPUs
-- Install / Enable IIS in Windows with CGI and Common HTTP Features and IIS Management Console
+- Install / Enable IIS in Windows with CGI and Common HTTP Features and IIS Management Console through the Control Panel. TO check if this was installed properlly go to your web browser and serach 127.0.0.1 you should see windows Internet Information Servies 
 - Download and install PHP Manager for IIS (PHPManagerForIIS_V1.5.0.msi)
 - Download and install the Rewrite Module (rewrite_amd64_en-US.msi)
 - Create the directory C:\PHP
@@ -38,10 +38,20 @@ This tutorial outlines the prerequisites and installation of the open-source hel
 <p>
   
 - Open IIS as an Admin
+  - Search for "Internet Information Services (IIS)" in your Windows search bar.
+Right-click on the result and select "Run as administrator" to open IIS with administrative privileges.
   
 - Register PHP from within IIS
-  
+     - Within IIS, find and select the "PHP Manager."
+Click on it to open the PHP Manager.
+Click on Register new PHP version. Click and Browse This PC. Navigate to C drive ( Windows (C))\ PHP\php-cgi.
+Click okay
+
 - Reload IIS (Open IIS, Stop and Start the server)
+     - To reload IIS, stop and start the server.
+In IIS, right-click on your server (usually listed on the left side).
+Choose "Stop" to stop the server.
+Then, right-click again and select "Start" to start the server.
 
 </p>
 <br />
@@ -53,13 +63,13 @@ This tutorial outlines the prerequisites and installation of the open-source hel
   
 - Install osTicket v1.15.8
   
-  - Download osTicket from the Installation Files Folder
-  
-  - Extract and copy “upload” folder to c:\inetpub\wwwroot
-
-  - Within c:\inetpub\wwwroot, Rename “upload” to “osTicket”
+  - Download osTicket.
+       - Extract the downloaded file.
+Copy the "upload" folder to your C drive (C:\inetpub\wwwroot).
+After copying, rename the "upload" folder to "osTicket."
 
 - Reload IIS (Open IIS, Stop and Start the server)
+     - Follow the same steps as in step 3 to stop and start the IIS server.
    
 </p>
 <br />
@@ -68,26 +78,23 @@ This tutorial outlines the prerequisites and installation of the open-source hel
 <img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-  
-- Go to sites -> Default -> osTicket
 
-- On the right, click “Browse *:80”
+- Access osTicket  
+     - In IIS, go to "sites" and find "Default." Look for the "osTicket" option. On the right side, click "Browse *:80" to access osTicket.
 
-- Note that some extensions are not enabled
-  
-  - Go back to IIS, sites -> Default -> osTicket
-  
-  - Double-click PHP Manager
+- Enable PHP Extensions
+    - In IIS, find "Default" and "osTicket" again.
+Double-click "PHP Manager."
+Click "Enable or disable an extension."
+         - Enable the following extensions:
+           
+           php_imap.dll
 
-  - Click “Enable or disable an extension”
+           php_intl.dll
 
-  - Enable: php_imap.dll
-
-  - Enable: php_intl.dll
-
-  - Enable: php_opcache.dll
-
-- Refresh the osTicket site in your browse, observe the changes
+           php_opcache.dll
+           
+- After enabling these extensions, refresh the osTicket site in your web browser to see the changes.
 
 </p>
 <br />
@@ -97,51 +104,22 @@ This tutorial outlines the prerequisites and installation of the open-source hel
 </p>
 <p>
 
-- Rename: ost-config.php
-  
-    - From: C:\inetpub\wwwroot\osTicket\include\ost-sampleconfig.php
-     
-    - To: C:\inetpub\wwwroot\osTicket\include\ost-config.php
+- Rename Configuration File
+     - Navigate to C:\inetpub\wwwroot\osTicket\include.
+Find a file named "ost-sampleconfig.php."
+Rename it to "ost-config.php."
+    
+ - Assign Permissions to ost-config.php
+      - Right-click on the "ost-config.php" file.
+Choose "Properties."
+In the "Security" tab, click "Edit" to change permissions.
+Disable inheritance and remove all existing permissions.
+Add a new permission for "Everyone" with "Full Control."
 
- - Assign Permissions: ost-config.php
-
-      - Disable inheritance -> Remove All
-
-      - New Permissions -> Everyone -> All
-
-- Continue Setting up osTicket in the browser (click Continue)
-
-   - Name Helpdesk
-
-   - Default email (receives email from customers)
-
-</p>
-<br />
-
-<p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-<p>
-
-- From the Installation Files, download and install HeidiSQL.
-
-  - Open Heidi SQL
-  
-  - Create a new session, root/Password1
-
-  - Connect to the session
-
-  - Create a database called “osTicket”
-
-- Continue Setting up osticket in the browser
-
-   - MySQL Database: osTicket
-     
-   - MySQL Username: root
-     
-   - MySQL Password: Password1
-     
-   - Click “Install Now!”
+- Continue Setting up osTicket in the Browser
+     - Open your web browser and visit the osTicket site (should be at http://localhost/osTicket).
+- Follow on-screen instructions to set up your helpdesk.
+- Provide a name for your helpdesk and a default email address for receiving customer emails.
 
 </p>
 <br />
@@ -151,9 +129,40 @@ This tutorial outlines the prerequisites and installation of the open-source hel
 </p>
 <p>
 
-Congratulations, hopefully it is installed with no errors!
+- Install HeidiSQL:
+     - Download and Install HeidiSQL on your computer.
+  
+  - Open HeidiSQL and Create a Database
+       - Open HeidiSQL.
+       - Create a new session with the following information:
+       - Username: root
+       - Password: Password1
+       - Connect to the session.
+       - Create a new database called "osTicket."
+  
 
-  - Browse to your help desk login page: http://localhost/osTicket/scp/login.php
+- Continue Setting up osTicket in the Browser
+     - Go back to your web browser where you were setting up osTicket.
+     - Provide the following MySQL database information:
+     - Database Name: osTicket
+     - MySQL Username: root
+     - MySQL Password: Password1
+     - Click "Install Now!"
+
+</p>
+<br />
+
+<p>
+<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+<p>
+
+- Your osTicket should now be installed without errors.
+- To access your helpdesk login page, go to: http://localhost/osTicket/scp/login.php.
+
+That's it! You've successfully set up osTicket on your system.
+
+
 
 
 
